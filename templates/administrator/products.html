@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+	<title>Admin Panel</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/modal.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'css/app.css' %}"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+  <style>
+    .blank{
+      width: 100%;
+      height: 120px;
+      
+    }
+   
+    .b{
+      width: 5px;
+     
+    }
+     .form-control{
+         font-size: 20px;
+         border-radius: solid 5px;
+		 float: right;
+		 width: 60%;
+		 margin-top: 25px;
+		 margin-right: 20px;
+		 
+     } 
+
+     .table-box1{
+	    width: 450px;
+	    box-shadow: var(--shadow);
+	    background: var(--lightblue);
+      	margin-left: 18%;
+	    
+	    border-radius: 10px;
+	    text-align: center;
+    }
+    th{
+      color:chartreuse;
+      font-size: 25px;
+    }
+    td{
+      color: rgb(0, 242, 255);
+      font-size: 15px;
+    }
+    form{
+	    width: 500px;
+		height: 520px;
+	    box-shadow: var(--shadow);
+	    background: var(--lightblue);
+        margin-left: 18%;
+	    
+	    border-radius: 10px;
+	    text-align: center;
+    }
+	
+	.label{
+		margin-top: 20px;
+	}
+	.gl-label{
+
+		float: left; 
+		color: aquamarine;
+		 margin-left: 28px;
+		  margin-top:15px ;
+	}
+	.input-text{
+		border: 1px solid rgb(198, 73, 212);
+		font-size: 20px;
+		margin-top: 10px;
+		border-radius: 5px;
+		width: 90%;
+		
+		
+		
+
+	}
+	
+  
+   
+  </style>
+</head>
+
+
+<body>
+
+	<div class="sidebar">
+		<h1 class="logo"><span>Admin</span></h1>
+		<i class="fa fa-chevron-left menu-icon"></i>
+	
+		<ul class="sidenav">
+			<li ><i class="fa fa-home"></i><a href="{% url 'admin_dash' %}"> Dashboard
+				
+	
+				
+			</a>
+				
+			</li>
+	
+			
+			<li><i class="fa fa-shopping-bag"></i><a href="{% url 'dash_category' %}">Category</a></li>
+			<li class="active"><i class="fa fa-cubes"></i><a href="#">Product
+		  <span class="span1"><i class="fa fa-angle-right"></i></span>
+	
+	
+		</a>
+	  </li>
+	  <ul class="dropdown">
+		<li><a href="{% url 'dash_product' %}"><span class="dot"></span> Add Product</a></li>
+		<li><a href="{% url 'show_product' %}"><span class="dot"></span> Show Product</a></li>
+		
+	  </ul>
+		
+		<li><i class="fa fa-shopping-cart" ></i><a href="{% url 'show_order' %}">Order
+		  
+	
+	
+		</a>
+		</li>
+	
+	
+			<li><i class="fa fa-users"></i><a href="{% url 'show_user' %}"> User</a></li>
+		</ul>
+	
+	</div>
+
+<div class="main">
+	<div class="main-top">
+		<!-- <input type="text" name="" class="input" placeholder="Search"> -->
+		<div class="top-right">
+			
+			<!-- <i class="fa fa-bell-o topicon bell"></i>
+			<div class="notification-div">
+			<p>Success!Your registration is now complete!</p>
+			<p>Here's some information you may find useful!</p>			
+		</div> -->
+
+			<a href="{% url 'logout' %}" class="user1"><img src="{% static 'images/admin.png' %}" class="user">
+				<div class="profile-div">
+					<!-- <p><i class="fa fa-user"></i> &nbsp;&nbsp;Profile</p>
+					<p><i class="fa fa-cog"></i> &nbsp;&nbsp;Settings</p> -->
+					<p><i class="fa fa-power-off"></i> &nbsp;&nbsp;Log Out</p>
+				</div>
+			</a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+	</div>
+
+  <div class="blank" ></div>
+<center>
+  <div class="title " ><h1 style="color: rgb(248, 133, 9); ">ADD PRODUCT</h1></div>
+  
+  <div class="box ">
+    <div class="b"></div>
+    
+    
+    <form action="{% url 'add_product' %}" method="POST" style="margin-top: 25px;" enctype="multipart/form-data">{% csrf_token %} 
+
+      
+
+		<div class="u-s-m-b-15">
+		
+			<label class="gl-label" >Category_Name*</label>
+			
+			<select class="input-text input-text--primary-style" name="cat">
+				{% for i in cat %}
+				<option value="{{i.id}}">{{i.Category_Name}}</option>
+				{% endfor %}
+			</select>
+			
+		</div>
+		
+		<div class="u-s-m-b-15">
+
+			<label class="gl-label" >Product Name*</label>
+
+			<input class="input-text input-text--primary-style" type="text" name="pname"   >
+		</div>
+
+		<div class="u-s-m-b-15">
+
+			<label class="gl-label" >Product Description*</label>
+
+			<textarea class="input-text input-text--primary-style" name="desp" style="height:60px">
+				</textarea>
+		</div>
+
+		<div class="u-s-m-b-15">
+
+			<label class="gl-label" >Product_Image*</label>
+
+			<input class="input-text input-text--primary-style" type="file" name="file"  value=""  >
+		</div>
+
+		<div class="u-s-m-b-15">
+
+			<label class="gl-label" >Product_Price*</label>
+
+			<input class="input-text input-text--primary-style" type="text" name="price"   >
+		</div>
+
+		<div class="u-s-m-b-15">
+
+			<label class="gl-label" >Product_Delprice*</label>
+
+			<input class="input-text input-text--primary-style" type="text" name="delprice"   >
+		</div>
+		
+
+   
+               <div class="text-center" >
+               <button class="  btn btn-danger  " type="submit" style="width:150px;">Save</button>
+              </div>
+			  
+               
+           
+   
+   
+   
+   
+                  </form>
+                </div>
+                </center>
+               
+             
+              
+
+
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $(".span1").click(function(){
+    $(".dropdown").slideToggle(500);
+  });
+});
+
+	$('.sidenav li').click(function(){
+    $('.sidenav li').removeClass("active");
+    $(this).addClass("active");
+});
+</script>
+
+<script type="text/javascript">
+	$(".menu-icon").click(function(e) {
+        e.preventDefault();
+        $(".menu-icon").toggleClass("menuicon");
+        $(".main").toggleClass("main-width");
+        $(".sidebar").toggleClass("active1");
+        $(".sidenav li a").toggleClass("anchor");
+        $(".sidenav li").toggleClass("lislide");
+        $(".sidenav p").toggleClass("apphide");
+        $(".logo span").toggleClass("headspan");
+        $(".logo").toggleClass("lm");
+
+});
+</script>
+<script>
+$(document).ready(function(){
+  $(".user").click(function(){
+    $(".profile-div").toggle(1000);
+  });
+  $(".bell").click(function(){
+    $(".notification-div").toggle(1000);
+  });
+});
+</script>
+
+
+
+
+
+</body>
+</html>

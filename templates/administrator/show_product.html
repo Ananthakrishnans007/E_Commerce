@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+	<title>Admin Panel</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/modal.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+  <style>
+    .blank{
+      width: 100%;
+      height: 150px;
+      
+    }
+   
+    .b{
+      width: 5px;
+     
+    }
+     .form-control{
+         font-size: 20px;
+         border-radius: solid 5px;
+     } 
+
+     .table-box1{
+	    width: 1100px;
+	    box-shadow: var(--shadow);
+	    background: var(--lightblue);
+      margin-left: 18%;
+	    
+	    border-radius: 10px;
+	    text-align: center;
+    }
+    th{
+      color:chartreuse;
+      font-size: 25px;
+      text-align: center;
+    }
+    td{
+      color: rgb(0, 242, 255);
+      font-size: 15px;
+    }
+  
+  
+   
+  </style>
+</head>
+
+
+<body>
+
+  <div class="sidebar">
+    <h1 class="logo"><span>Admin</span></h1>
+    <i class="fa fa-chevron-left menu-icon"></i>
+  
+    <ul class="sidenav">
+      <li class=><i class="fa fa-home"></i><a href="{% url 'admin_dash' %}"> Dashboard
+        
+  
+        
+      </a>
+        
+      </li>
+  
+      
+      <li><i class="fa fa-shopping-bag"></i><a href="{% url 'dash_category' %}">Category</a></li>
+      <li class="active"><i class="fa fa-cubes"></i><a href="#">Product
+        <span class="span1"><i class="fa fa-angle-right"></i></span>
+  
+  
+      </a>
+    </li>
+    <ul class="dropdown">
+      <li><a href="{% url 'dash_product' %}"><span class="dot"></span> Add Product</a></li>
+      <li><a href="{% url 'show_product' %}"><span class="dot"></span> Show Product</a></li>
+      
+    </ul>
+      
+      <li><i class="fa fa-shopping-cart" ></i><a href="{% url 'show_order' %}">Order
+        
+  
+  
+      </a>
+      </li>
+  
+  
+      <li><i class="fa fa-users"></i><a href="{% url 'show_user' %}"> User</a></li>
+    </ul>
+  
+  </div>
+
+<div class="main">
+	<div class="main-top">
+		<!-- <input type="text" name="" class="input" placeholder="Search"> -->
+		<div class="top-right">
+			
+			<!-- <i class="fa fa-bell-o topicon bell"></i>
+			<div class="notification-div">
+			<p>Success!Your registration is now complete!</p>
+			<p>Here's some information you may find useful!</p>			
+		</div> -->
+
+			<a href="{% url 'logout' %}" class="user1"><img src="{% static 'images/admin.png' %}" class="user">
+				<div class="profile-div">
+					<!-- <p><i class="fa fa-user"></i> &nbsp;&nbsp;Profile</p>
+					<p><i class="fa fa-cog"></i> &nbsp;&nbsp;Settings</p> -->
+					<p><i class="fa fa-power-off"></i> &nbsp;&nbsp;Log Out</p>
+				</div>
+			</a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+	</div>
+
+  <div class="blank" ></div>
+  
+<center>
+  <div class="title " ><h1 style="color: rgb(248, 133, 9); ">SHOW PRODUCT </h1></div>
+  
+  
+                </center>
+               
+              <center>
+                <div class="table-box1 " style=" text-align: center; margin-top: 5%;" >
+                  <table id="table">
+                
+                <thead>
+                  <tr style="margin-left: 20px;">
+                   
+                     <th scope="col" width="50px">Category Name</th>
+                     <th scope="col" width="50px">Product Name</th>
+                     <th scope="col" width="50px">Product Image</th>
+                     <th scope="col" width="200px">Description</th>
+                     <th scope="col" width="50px">Price</th>
+                     <th scope="col" width="50px">Del Price</th>
+                     <th scope="col" width="50px">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in product %}
+                  <tr>
+                    
+                    <td> {{i.Category_Name.Category_Name}}  </td>
+                    <td> {{i.Product_Name}}  </td>
+                    <td> <img src="{{i.Product_Image.url}}" width="40px" height="50px" > </td>
+                    <td> {{i.Product_Description}}  </td>
+                    <td> {{i.Product_Price}} </td>
+                    <td> {{i.Product_Delprice}}  </td>
+
+                    <td data-label="Period">
+                      <a  href="{% url 'edit_product' i.id %}" style="color: rgb(4, 255, 0);"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </i>
+                    &nbsp; &nbsp;&nbsp;
+                    <a href="" style="color: rgb(255, 0, 0);"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                    
+                      
+                    </td>
+                      
+                  </tr>
+                  {% endfor %}
+              
+                  
+                
+              
+                
+                
+              
+                  
+                </tbody>
+              </table>
+              
+
+              
+                </div>
+              </center>
+              
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $(".span1").click(function(){
+    $(".dropdown").slideToggle(500);
+  });
+});
+
+	$('.sidenav li').click(function(){
+    $('.sidenav li').removeClass("active");
+    $(this).addClass("active");
+});
+</script>
+
+<script type="text/javascript">
+	$(".menu-icon").click(function(e) {
+        e.preventDefault();
+        $(".menu-icon").toggleClass("menuicon");
+        $(".main").toggleClass("main-width");
+        $(".sidebar").toggleClass("active1");
+        $(".sidenav li a").toggleClass("anchor");
+        $(".sidenav li").toggleClass("lislide");
+        $(".sidenav p").toggleClass("apphide");
+        $(".logo span").toggleClass("headspan");
+        $(".logo").toggleClass("lm");
+
+});
+</script>
+<script>
+$(document).ready(function(){
+  $(".user").click(function(){
+    $(".profile-div").toggle(1000);
+  });
+  $(".bell").click(function(){
+    $(".notification-div").toggle(1000);
+  });
+});
+</script>
+
+</body>
+</html>

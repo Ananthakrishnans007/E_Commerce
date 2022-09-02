@@ -1,0 +1,115 @@
+/* Modal styles */
+.modal .modal-dialog {
+    max-width: 400px;
+}
+.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+    padding: 20px 30px;
+}
+.modal .modal-content {
+    border-radius: 3px;
+}
+.modal .modal-footer {
+    background: #ecf0f1;
+    border-radius: 0 0 3px 3px;
+}
+.modal .modal-title {
+    display: inline-block;
+}
+.modal .form-control {
+    border-radius: 2px;
+    box-shadow: none;
+    border-color: #dddddd;
+}
+.modal textarea.form-control {
+    resize: vertical;
+}
+.modal .btn {
+    border-radius: 2px;
+    min-width: 100px;
+}	
+.modal form label {
+    font-weight: normal;
+}
+
+
+
+
+
+
+
+
+.modal .input_field{
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    
+
+}
+.modal label{
+    width: 200px;
+    margin-right: 10px;
+    font-size: 20px;
+
+}
+.modal .input_field .input{
+   
+    width: 100%;
+    outline: none;
+    border: 1px solid blueviolet;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.5s ease;
+
+}
+
+
+
+.modal .input_field .input1{
+   
+    width: 88%;
+    outline: none;
+    border: 1px solid blueviolet;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: all 0.5s ease;
+ 
+ } 
+.modal .input_field textarea{
+   
+    resize: none;
+    height: 90px;
+}
+.modal .input_field .selectbox{
+   
+    
+    width: 103%;
+    height: 40px;
+    border: 1px solid blueviolet;
+    border-radius: 3px;
+}
+
+
+.modal .input_field .gender{
+    width: 50px;
+    height: 18px;
+    border: 1px solid blueviolet;
+    padding: 20px;
+    
+
+   
+    
+}
+
+.modal .input_field .date{
+   
+    width: 100%;
+    outline: none;
+    border: 1px solid blueviolet;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    text-align: center;
+    
+}
